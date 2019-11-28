@@ -66,7 +66,8 @@ class AddNewContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, userlogin="admin", userpassword="secret")
-        self.create_contact(wd, firstname="Test", middlename="Testovich", lastname="Testov", nickname="test1", adress="Testovia, Test City, Test street",
+        self.create_contact(wd, firstname="Test", middlename="Testovich", lastname="Testov", nickname="test1", 
+                            adress="Testovia, Test City, Test street",
                             mobilephone="+79999999999", email="test@test.ts", bday="9", bmonth="August", byear="1990")
         self.return_to_home_page(wd)
         self.logout(wd)
