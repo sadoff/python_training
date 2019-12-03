@@ -24,7 +24,6 @@ class Application:
 
     def init_group_creation(self):
         wd = self.wd
-        self.init_group_creation()
         wd.find_element_by_name("new").click()
 
     def fill_group_form(self, group):
@@ -39,12 +38,10 @@ class Application:
 
     def submit_group_creation(self):
         wd = self.wd
-        self.submit_group_creation()
         wd.find_element_by_name("submit").click()
 
     def return_to_groups_page(self):
         wd = self.wd
-        self.return_to_groups_page()
         wd.find_element_by_link_text("group page").click()
 
     def logout(self):
