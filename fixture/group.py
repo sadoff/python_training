@@ -30,6 +30,17 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
 
+    def modify_first_group(self):
+        wd = self.app.wd
+        wd.get("http://localhost/addressbook/group.php")
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("edit").click()
+
+    def submit_group_update(self):
+        wd = self.app.wd
+        wd.find_element_by_name("update").click()
+
+
     def return_to_groups_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
