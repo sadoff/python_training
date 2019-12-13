@@ -34,16 +34,24 @@ class ContactHelper:
 
     def delete_first(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/")
-        wd.find_element_by_name("selected[]").click()
+        self.open_main_page()
+        self.select_first_contact()
         wd.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
 
-    def edit_first(self):
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+
+    def open_main_page(self):
         wd = self.app.wd
         wd.get("http://localhost/addressbook/")
-        wd.find_element_by_name("selected[]").click()
+
+    def edit_first(self):
+        wd = self.app.wd
+        self.open_main_page()
+        self.select_first_contact()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
 
     def update_button_click(self):
