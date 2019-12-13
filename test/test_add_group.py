@@ -8,7 +8,7 @@ def test_add_group(app):
         app.group.fill_form(Group(name="test", header="test1", footer="test2"))
         app.group.submit_creation()
         app.group.return_to_groups_page()
-    
+
 
 
 def test_add_empty_group(app):
