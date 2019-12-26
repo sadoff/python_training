@@ -13,8 +13,8 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        if not wd.current_url.endswith("/addressbook"):
-            wd.get("http://localhost/addressbook")
+        if not wd.current_url.endswith("/addressbook/group.php"):
+            wd.get("http://localhost/addressbook/group.php")
 
     def return_to_home_page(self):
         wd = self.wd

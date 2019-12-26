@@ -1,3 +1,6 @@
+from model.contact import Contact
+
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -58,3 +61,13 @@ class ContactHelper:
     def click_submit_button(self):
         wd = self.app.wd
         wd.find_element_by_name("submit").click()
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_main_page()
+        contacts = []
+        for element in wd.find_elements_by_css_selector("tr[name=entry]"):
+            text = element.find_elements_by_css_selector("td")
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(id=id, firstname=text, lastname=text))
+        return contacts
