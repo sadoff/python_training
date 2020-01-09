@@ -6,9 +6,16 @@ class GroupHelper:
     def __init__(self, app):
         self.app = app
 
-    def init_creation(self):
+    def create(self, group):
         wd = self.app.wd
+        self.group_home_page()
+        # new group
         wd.find_element_by_name("new").click()
+        self.fill_form(group)
+        # submit new group
+        wd.find_element_by_name("submit").click()
+        self.return_to_groups_page()
+        self.group_cache = None
 
     def fill_form(self, group):
         wd = self.app.wd
@@ -22,10 +29,6 @@ class GroupHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
-
-    def submit_creation(self):
-        wd = self.app.wd
-        wd.find_element_by_name("submit").click()
 
     def delete_first(self):
         wd = self.app.wd

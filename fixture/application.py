@@ -16,6 +16,11 @@ class Application:
         if not wd.current_url.endswith("/addressbook/group.php"):
             wd.get("http://localhost/addressbook/group.php")
 
+    def home_page(self):
+        wd = self.wd
+        if not wd.current_url.endswith("/addressbook/"):
+            wd.get("http://localhost/addressbook/")
+
     def return_to_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
