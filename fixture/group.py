@@ -31,9 +31,12 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def delete_first(self):
+        self.delete_group_by_index(0)
+
+    def delete_group_by_index(self, index):
         wd = self.app.wd
         self.group_home_page()
-        self.select_first_group()
+        self.select_group_by_index(index)
         # submit deletion
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
@@ -44,20 +47,18 @@ class GroupHelper:
         if not wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0:
             wd.get("http://localhost/addressbook/group.php")
 
-    def select_first_group(self):
+    def select_group_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
 
-    def modify_first(self):
+    def modify_first_group(self):
+        self.modify_group_by_index(0)
+
+    def modify_group_by_index(self, index, new_group_data):
         wd = self.app.wd
         self.group_home_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_group_by_index(index)
         wd.find_element_by_name("edit").click()
-
-    def modify_first_group(self, new_group_data):
-        wd = self.app.wd
-        self.group_home_page()
-        self.modify_first()
         # fill group from
         self.fill_form(new_group_data)
         # submit modification

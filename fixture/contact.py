@@ -35,6 +35,7 @@ class ContactHelper:
         wd.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        self.contact_cache = None
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -63,6 +64,7 @@ class ContactHelper:
         self.fill_inputs(new_contact_data)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home_page()
+        self.contact_cache = None
 
     def click_submit_button(self):
         wd = self.app.wd
@@ -81,4 +83,4 @@ class ContactHelper:
                 lastname = element.find_elements_by_tag_name("td")[1].text
                 firstname = element.find_elements_by_tag_name("td")[2].text
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname))
-            return list(self.contact_cache)
+        return list(self.contact_cache)
