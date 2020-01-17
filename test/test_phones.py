@@ -24,7 +24,7 @@ def test_contact_data_on_home_page(app):
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
     assert contact_from_home_page_random.firstname == contact_from_edit_page.firstname
     assert contact_from_home_page_random.lastname == contact_from_edit_page.lastname
-    assert contact_from_home_page_random.adress == contact_from_edit_page.adress
+    assert contact_from_home_page_random.address == contact_from_edit_page.address
     assert contact_from_home_page_random.all_phones_from_home_page == merge_phones_like_on_homepage(contact_from_edit_page)
     assert contact_from_home_page_random.all_emails_from_home_page == merge_emails_on_home_page(contact_from_edit_page)
 
@@ -37,7 +37,7 @@ def merge_phones_like_on_homepage(contact):
     return "\n".join(filter(lambda x: x != "",
                             map(lambda x: clear(x),
                                 filter(lambda x: x is not None,
-                                       [contact.homephone, contact.workphone, contact.mobilephone,
+                                       [contact.homephone, contact.mobilephone, contact.workphone,
                                         contact.secondaryphone]))))
 
 
