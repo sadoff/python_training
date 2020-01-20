@@ -5,7 +5,7 @@ from random import randrange
 def test_modify_first(app):
     old_contacts = app.contact.get_contact_list()
     contact = Contact(firstname="Test", middlename="Testovich", lastname="Testov", nickname="test1",
-                            adress="Testovia, Test City, Test street",
+                            address="Testovia, Test City, Test street",
                             mobilephone="+79999999999", email="test@test.ts")
     index = randrange(len(old_contacts))
     contact.id = old_contacts[index].id

@@ -7,7 +7,7 @@ def test_delete_first(app):
     index = randrange(len(old_contacts))
     if app.contact.count() == 0:
         app.contact.add_contact(Contact(firstname="Test", middlename="Testovich", lastname="Testov", nickname="test1",
-                            adress="Testovia, Test City, Test street",
+                            address="Testovia, Test City, Test street",
                             mobilephone="+79999999999", email="test@test.ts"))
     app.contact.delete_contact_by_index(index)
     assert len(old_contacts) - 1 == app.contact.count()
