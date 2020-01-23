@@ -44,8 +44,8 @@ class GroupHelper:
 
     def group_home_page(self):
         wd = self.app.wd
-        if not wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0:
-            wd.get("http://localhost/addressbook/group.php")
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
+            wd.find_element_by_link_text("groups").click()
 
     def select_group_by_index(self, index):
         wd = self.app.wd
