@@ -14,7 +14,7 @@ class ContactHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_inputs(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.app.return_to_home_page()
+        self.app.open_home_page()
         self.contact_cache = None
 
     def fill_inputs(self, contact):
@@ -41,7 +41,7 @@ class ContactHelper:
 
     def delete_contact_by_index(self, index):
         wd = self.app.wd
-        self.home_page()
+        self.open_home_page()
         self.select_contact_by_index(index)
         wd.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
@@ -52,19 +52,14 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def home_page(self):
+    def open_home_page(self):
         wd = self.app.wd
         if not wd.current_url.endswith("/addressbook"):
             wd.get("http://localhost/addressbook")
 
-
-    def return_to_home_page(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("home page").click()
-
     def count(self):
         wd = self.app.wd
-        self.home_page()
+        self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     def modify_first_contact(self):
@@ -72,7 +67,7 @@ class ContactHelper:
 
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
-        self.home_page()
+        self.open_home_page()
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_inputs(new_contact_data)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
@@ -99,7 +94,7 @@ class ContactHelper:
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
-            self.app.home_page()
+            self.app.open_home_page()
             self.contact_cache = []
             for row in wd.find_elements_by_css_selector("tr[name=entry]"):
                 cells = row.find_elements_by_tag_name("td")
